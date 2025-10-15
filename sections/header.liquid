@@ -3,11 +3,33 @@
     {{ shop.name | link_to: routes.root_url }}
   </h2>
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
+  {% assign menu = section.settings.menu %}
+
+  <ul class="header__links">
+    {% for link in menu.links %}
+      <li class="header__link-item">
+        <a href="{{ link.url }}">{{ link.title }}</a>
+
+        {% for block in section.blocks %}
+          {% if block.settings.menu_item_title == link.title %}
+            {% case block.type %}
+              {% when 'mega_menu_shop' %}
+                <div class="mega-menu mega-menu--shop">
+                  <p>Shop Mega Menu Block: {{ block.settings.number }}</p>
+                </div>
+
+              {% when 'mega_menu_about' %}
+                <div class="mega-menu mega-menu--about">
+                  <p>
+                    About URL: <a href="{{ block.settings.url }}">{{ block.settings.url }}</a>
+                  </p>
+                </div>
+            {% endcase %}
+          {% endif %}
+        {% endfor %}
+      </li>
     {% endfor %}
-  </div>
+  </ul>
 
   <div class="header__icons">
     {% if shop.customer_accounts_enabled %}
@@ -25,8 +47,12 @@
 </header>
 
 {% stylesheet %}
+  .block__shop {
+    height: 400px;
+    width: 100%;
+  }
   header {
-    height: 5rem;
+    /* height: 5rem; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -50,16 +76,63 @@
     display: flex;
     gap: 1rem;
   }
+
+  .header__links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "t:general.header",
+  "name": "Header",
   "settings": [
     {
       "type": "link_list",
       "id": "menu",
       "label": "t:labels.menu"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "mega_menu_shop",
+      "name": "Mega Menu — Shop",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item_title",
+          "label": "Nav Link"
+        },
+        {
+          "type": "number",
+          "id": "number",
+          "label": "Some Number"
+        }
+      ]
+    },
+    {
+      "type": "mega_menu_about",
+      "name": "Mega Menu — About",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu_item_title",
+          "label": "Nav Link"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Some URL"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Default header",
+      "blocks": []
     }
   ]
 }
