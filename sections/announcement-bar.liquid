@@ -18,6 +18,14 @@
 
     .announcement{
       position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .5s ease-in-out;
+    }
+
+    .announcement.is-active{
+      opacity: 1;
+      visibility: visible;
     }
 
     .announcement > a {
@@ -46,30 +54,21 @@
 {% if section.settings.enable_autorotate and section.blocks.size > 1 %}
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Find our specific announcement bar and all of its items
-      const container = document.getElementById('announcement-bar-{{ section.id }}');
-      const announcements = container.querySelectorAll('.announcement-item');
+      const container = document.querySelector('.announcement__bar');
+      const announcements = container.querySelectorAll('.announcement');
 
-      // If there's nothing to animate, stop the script
       if (announcements.length <= 1) {
         return;
       }
 
       let currentIndex = 0;
-      // Show the first announcement immediately
       announcements[currentIndex].classList.add('is-active');
 
-      // Set up a timer to switch announcements
       setInterval(() => {
-        // Hide the current announcement
         announcements[currentIndex].classList.remove('is-active');
-
-        // Move to the next one, or loop back to the start
         currentIndex = (currentIndex + 1) % announcements.length;
-
-        // Show the new current announcement
         announcements[currentIndex].classList.add('is-active');
-      }, {{ section.settings.slide_duration | times: 1000 }}); // Duration from theme settings
+      }, {{ section.settings.slide_duration | times: 1000 }});
     });
   </script>
 {% endif %}
