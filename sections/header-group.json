@@ -11,17 +11,34 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
-    },
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {}
+      "blocks": {
+        "announcement_CkpLFj": {
+          "type": "announcement",
+          "settings": {
+            "announcement_text": "Free shipping on orders over $50",
+            "announcement_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_CkpLFj"
+      ],
+      "settings": {
+        "bg_color": "#254430",
+        "text_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": ""
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header"
-  ],
+  ]
 }
