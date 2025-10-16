@@ -1,27 +1,35 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {}
-    },
     "announcement-bar": {
       "type": "announcement-bar",
-      "settings": {}
+      "blocks": {
+        "announcement_CkpLFj": {
+          "type": "announcement",
+          "settings": {
+            "announcement_text": "Free shipping on orders over $50",
+            "announcement_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement_CkpLFj"
+      ],
+      "settings": {
+        "bg_color": "#254430",
+        "text_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": ""
+      }
     }
   },
   "order": [
     "announcement-bar",
     "header"
-  ],
+  ]
 }

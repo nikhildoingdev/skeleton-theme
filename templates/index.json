@@ -12,14 +12,9 @@
     "main": {
       "type": "hello-world",
       "settings": {}
-    },
-    "header-group": {
-      "type": "header-group",
-      "settings": {}
     }
   },
   "order": [
-    "header-group",
     "main"
   ]
 }
