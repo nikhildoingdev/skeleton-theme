@@ -9,7 +9,7 @@
 
     /* Functionality to use custom font */
     {% if settings.primary_font == 'custom' %}
-      --font-primary--family: 'Futura Cyrillic Book', sans-serif;
+      --font-primary--family: 'Futura Cyrillic', sans-serif;
       {% else %}
       --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
     {% endif %}
