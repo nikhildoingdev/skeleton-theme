@@ -13,13 +13,13 @@
       "type": "hello-world",
       "settings": {}
     },
-    "header": {
+    "header-group": {
       "type": "header-group",
       "settings": {}
     }
   },
   "order": [
-    "header",
+    "header-group",
     "main"
   ]
 }
