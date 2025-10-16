@@ -1,19 +1,23 @@
 <div class="announcement__bar">
-  <p>I'm present</p>
   {% for block in section.blocks %}
-    <a href="{{ block.url }}">{{ block.text }}</a>
+    <a href="{{ block.settings.announcement_url }}">{{ block.settings.announcement_text }}</a>
   {% endfor %}
 </div>
 
+<style>
+  .announcement__bar {
+      height: 45px;
+      background: {{ section.settings.bg_color }};
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-{% style %}
-  .announcement__bar{
-    height: 45px;
-    background: {{ section.settings.bg_color }};
-    color: {{ section.settings.text_color }};
-  }
-{% endstyle %}
-
+    .announcement__bar > a {
+      color: {{ section.settings.text_color }};
+      text-decoration: none;
+    }
+</style>
 
 {% schema %}
 {
@@ -30,7 +34,7 @@
       "type": "color",
       "id": "text_color",
       "label": "Text Color",
-      "default": "#fffff"
+      "default": "#fff"
     }
   ],
   "blocks": [
@@ -40,13 +44,13 @@
       "settings": [
         {
           "type": "text",
-          "id": "text",
+          "id": "announcement_text",
           "label": "Announcement Text",
           "default": "Free shipping on orders over $50"
         },
         {
           "type": "url",
-          "id": "url",
+          "id": "announcement_url",
           "label": "Link (Optional)"
         }
       ]

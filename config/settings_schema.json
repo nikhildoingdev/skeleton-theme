@@ -11,6 +11,22 @@
     "name": "t:general.typography",
     "settings": [
       {
+      "type": "select",
+      "id": "primary_font",
+      "label": "Primary Font",
+      "options": [
+        {
+          "value": "shopify",
+          "label": "Shopify"
+        },
+        {
+          "value": "custom",
+          "label": "Custom"
+        }
+      ],
+      "default": "shopify"
+    },
+      {
         "type": "header",
         "content": "t:general.fonts"
       },
