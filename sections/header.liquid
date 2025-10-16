@@ -35,62 +35,188 @@
         width="280"
         height="auto"
       >
-      {% else %}
-       <h2>{{ section.settings.company_name }}</h2> 
+    {% else %}
+      <h2>{{ section.settings.company_name }}</h2>
     {% endif %}
   </a>
 
   <div class="header__options">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
+    <div class="header__search">
+      {{ 'search_icon.svg' | inline_asset_content }}
+    </div>
 
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
+    <div class="header__region">
+      <p>AU</p>
+      {{ 'drop_arrow_icon.svg' | inline_asset_content }}
+    </div>
 
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
+    <div class="header__quiz">
+      <p>TAKE OUR QUIZ</p>
+    </div>
+
+    <div class="header__account">
+      {{ 'account_icon.svg' | inline_asset_content }}
+    </div>
+
+    <div class="header__cart">
+      {{ 'cart_icon.svg' | inline_asset_content }}
+    </div>
   </div>
 </header>
 
 {% stylesheet %}
-  .block__shop {
-    height: 400px;
-    width: 100%;
-  }
-
   header {
     height: 86px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    background: transparent;
+    transition: all 0.4s ease-in-out;
+  }
+
+  header:hover {
+    background: #fff;
   }
 
   .header__links,
-  .header__options{
+  .header__options {
     position: absolute;
   }
 
-  .header__links{
-    left: 0;
+  .header__options {
+    right: 0;
+    padding-right: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
   }
 
-  .header__options{
-    right: 0;
+  header:hover .header__options {
+    color: #181818;
   }
 
   .header__links {
+    left: 0;
+    padding-left: 2.5rem;
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 4rem;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
   }
 
-  .header__logo{
+  header:hover .header__links {
+    color: #000;
+  }
+
+  .header__logo {
     max-width: 140px;
+    max-height: 48px;
+    width: 100vw;
     color: #fff;
+    overflow: hidden;
+    object-fit: contain;
+  }
+
+  .header__logo > img {
+    object-fit: contain;
+    filter: brightness(100);
+    transition: all 0.2s ease-in-out;
+  }
+
+  header:hover .header__logo > img {
+    filter: brightness(0);
+  }
+
+  .header__search svg path {
+    fill: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  header:hover .header__search svg path {
+    fill: #181818;
+  }
+
+  .header__region {
+    display: flex;
+    gap: 0.5rem;
+    cursor: pointer;
+  }
+
+  .header__region > p {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .header__region svg path {
+    fill: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  header:hover .header__region svg path {
+    fill: #181818;
+  }
+
+  .header__quiz > p {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 0;
+    height: 100%;
+    width: 100%;
+    padding: 8px 14px;
+    border: 1px solid #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  header:hover .header__quiz > p {
+    background: #fff;
+    border: 1px solid #181818;
+  }
+
+  .header__account svg path {
+    stroke: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  header:hover .header__account svg path {
+    stroke: #181818;
+  }
+
+  .header__cart svg path {
+    stroke: #fff;
+    transition: all 0.3s ease-in-out;
+  }
+
+  header:hover .header__cart svg path {
+    stroke: #181818;
+  }
+
+  @media (max-width: 75rem) {
+    .header__links {
+      gap: 3rem;
+    }
+  }
+
+  @media (max-width: 56.25rem) {
+    .header__links {
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 37.5rem) {
+    .header__links {
+      display: none;
+    }
   }
 {% endstylesheet %}
 
