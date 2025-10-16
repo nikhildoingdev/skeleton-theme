@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "t:general.header",
@@ -11,20 +20,30 @@
             "announcement_text": "Free shipping on orders over $50",
             "announcement_url": ""
           }
+        },
+        "announcement_9T3idf": {
+          "type": "announcement",
+          "settings": {
+            "announcement_text": "I can add anything i want for any announcement i want",
+            "announcement_url": ""
+          }
         }
       },
       "block_order": [
-        "announcement_CkpLFj"
+        "announcement_CkpLFj",
+        "announcement_9T3idf"
       ],
       "settings": {
         "bg_color": "#254430",
-        "text_color": "#ffffff"
+        "text_color": "#ffffff",
+        "enable_autorotate": true,
+        "slide_duration": 5
       }
     },
     "header": {
       "type": "header",
       "settings": {
-        "menu": ""
+        "menu": "welleco-menu"
       }
     }
   },
