@@ -61,6 +61,11 @@ p:empty {
   display: none;
 }
 
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
 :is(p, h1, h2, h3, h4, h5, h6):first-child,
 :empty:first-child + :where(p, h1, h2, h3, h4, h5, h6) {
   margin-block-start: 0;

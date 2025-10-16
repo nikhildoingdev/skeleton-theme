@@ -1,10 +1,6 @@
+{% assign menu = section.settings.menu %}
+
 <header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-
-  {% assign menu = section.settings.menu %}
-
   <ul class="header__links">
     {% for link in menu.links %}
       <li class="header__link-item">
@@ -31,7 +27,20 @@
     {% endfor %}
   </ul>
 
-  <div class="header__icons">
+  <a href="{{ routes.root_url }}" class="header__logo">
+    {% if section.settings.logo != blank %}
+      <img
+        src="{{ section.settings.logo |  image_url: width: 280 }}"
+        alt="{{ section.settings.company_name }} Logo"
+        width="280"
+        height="auto"
+      >
+      {% else %}
+       <h2>{{ section.settings.company_name }}</h2> 
+    {% endif %}
+  </a>
+
+  <div class="header__options">
     {% if shop.customer_accounts_enabled %}
       {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
     {% endif %}
@@ -51,30 +60,26 @@
     height: 400px;
     width: 100%;
   }
+
   header {
-    /* height: 5rem; */
+    height: 86px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    background: #000;
   }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  header a sup {
+
+  .header__links,
+  .header__options{
     position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
   }
-  header svg {
-    width: 2rem;
+
+  .header__links{
+    left: 0;
   }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
+
+  .header__options{
+    right: 0;
   }
 
   .header__links {
@@ -82,12 +87,36 @@
     list-style: none;
     gap: 2rem;
   }
+
+  .header__logo{
+    max-width: 140px;
+    color: #fff;
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "Header",
   "settings": [
+    {
+      "type": "header",
+      "content": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "company_name",
+      "label": "Company Name",
+      "info": "Enter this as a fallback incase the logo image does not loads correctly"
+    },
+    {
+      "type": "header",
+      "content": "Menu"
+    },
     {
       "type": "link_list",
       "id": "menu",
