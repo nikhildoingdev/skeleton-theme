@@ -14,7 +14,9 @@
       justify-content: center;
       align-items: center;
       position: relative;
+      overflow: hidden;
     }
+
 
     .announcement{
       position: absolute;
@@ -27,6 +29,15 @@
       opacity: 1;
       visibility: visible;
     }
+
+    {% unless section.settings.enable_autorotate and section.blocks.size > 1 %}
+
+    .announcement:first-child{
+      opacity: 1;
+      visibility: visible;
+    }
+
+    {% endunless %}
 
     .announcement > a {
       color: {{ section.settings.text_color }};
@@ -53,7 +64,7 @@
 
 {% if section.settings.enable_autorotate and section.blocks.size > 1 %}
   <script>
-    document.addEventListener('DOMContentLoaded', function() {
+    (function(){
       const container = document.querySelector('.announcement__bar');
       const announcements = container.querySelectorAll('.announcement');
 
@@ -69,7 +80,7 @@
         currentIndex = (currentIndex + 1) % announcements.length;
         announcements[currentIndex].classList.add('is-active');
       }, {{ section.settings.slide_duration | times: 1000 }});
-    });
+    })();
   </script>
 {% endif %}
 
@@ -98,7 +109,8 @@
       "type": "checkbox",
       "id": "enable_autorotate",
       "label": "Auto-rotate announcements",
-      "default": true
+      "default": true,
+      "info": "Requires at least two announcement blocks to take effect."
     },
     {
       "type": "range",
